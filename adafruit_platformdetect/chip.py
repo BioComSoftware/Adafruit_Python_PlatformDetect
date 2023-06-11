@@ -259,6 +259,17 @@ class Chip:
         if self.detector.check_dt_compatible_value("sun50i-a64"):
             return chips.A64
 
+        ################################################
+        #333 ADDED BY MPR 2023-06-11
+        if self.detector.check_dt_compatible_value("sun50iw1p1arm"):
+            return chips.A64
+        if self.detector.check_dt_compatible_value("sun50iw1p1(venv)"):
+            return chips.A64        
+        if self.detector.check_dt_compatible_value("sun50iw1p1"):
+            return chips.A64
+        ################################################
+
+
         if self.detector.check_dt_compatible_value("sun50i-h5"):
             return chips.H5
 

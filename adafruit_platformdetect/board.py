@@ -193,6 +193,11 @@ class Board:
             board_id = self._armbian_id()
         elif chip_id == chips.S905X:
             board_id = boards.AML_S905X_CC
+        ##################################
+        #333 ADDED BY MPR 2023-06-11
+        elif chip_id == chips.A64:
+            board_id = self._pine64_id()            
+        ##################################
         self._board_id = board_id
         return board_id
 
@@ -685,7 +690,7 @@ class Board:
                     return boards.FEATHER_CAN_U2IF
         # Will only reach here if a device was added in chip.py but here.
         raise RuntimeError("RP2040_U2IF device was added to chip but not board.")
-
+    
     # pylint: enable=too-many-return-statements
 
     def _siemens_simatic_iot2000_id(self) -> Optional[str]:
@@ -697,6 +702,23 @@ class Board:
         elif board_value and "SIMATIC IOT2050 Basic" in board_value:
             board = boards.SIEMENS_SIMATIC_IOT2050_BASIC
         return board
+
+    ##################################
+    #333 ADDED BY MPR 2023-06-11
+    def _pine64_id(self):
+        """Try to detect the id for Pine64 board or device."""
+        board_value = self.detector.get_device_model()
+        board = None
+        if 'pine64' in board_value.lower():
+            board = boards.PINE64
+        elif 'sun50iw1p1' in board_value.lower():
+            board = boards.PINE64
+        elif 'pinebook' in board_value.lower():
+            board = boards.PINEBOOK
+        elif 'pinephone' in board_value.lower():
+            board = boards.PINEPHONE
+        return board
+    ##################################
 
     @property
     def any_siemens_simatic_iot2000(self) -> bool:

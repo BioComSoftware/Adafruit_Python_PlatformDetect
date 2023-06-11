@@ -37,6 +37,9 @@ generally dependent on the former.  Platform info is gathered from:
 
   - Distribution-specific files such as /etc/armbian-release.
 
+2023-06-11 MPR: 
+Edited in accordance with https://learn.adafruit.com/adding-a-single-board-computer-to-platformdetect-for-blinka?view=all
+
 Dependencies
 =============
 This driver depends on:
